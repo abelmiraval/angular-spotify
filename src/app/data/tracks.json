@@ -4,7 +4,7 @@
             "_id": 1,
             "name": "Getting Over",
             "album": "One Love",
-            "cover": "https://jenesaispop.com/wp-content/uploads/2009/09/guetta_onelove.jpg",
+            "cover": "https:_//jenesaispop.com/wp-content/uploads/2009/09/guetta_onelove.jpg",
             "artist": {
                 "name": "David Guetta",
                 "nickname": "David Guetta",
@@ -20,7 +20,7 @@
             "_id": 2,
             "name": "Snow Tha Product || BZRP Music Sessions #39",
             "album": "BZRP Music Sessions",
-            "cover": "https://is5-ssl.mzstatic.com/image/thumb/Features125/v4/9c/b9/d0/9cb9d017-fcf6-28c6-81d0-e9ac5b0f359e/pr_source.png/800x800cc.jpg",
+            "cover": "https:_//is5-ssl.mzstatic.com/image/thumb/Features125/v4/9c/b9/d0/9cb9d017-fcf6-28c6-81d0-e9ac5b0f359e/pr_source.png/800x800cc.jpg",
             "artist": {
                 "name": "Snow",
                 "nickname": "Snow",
@@ -36,7 +36,7 @@
             "_id": 3,
             "name": "Calypso (Original Mix)",
             "album": "Round Table Knights",
-            "cover": "https://cdns-images.dzcdn.net/images/cover/1db3f8f185e68f26feaf0b9d72ff1645/350x350.jpg",
+            "cover": "http_s://cdns-images.dzcdn.net/images/cover/1db3f8f185e68f26feaf0b9d72ff1645/350x350.jpg",
             "artist": {
                 "name": "Round Table Knights",
                 "nickname": "Round Table Knights",
@@ -52,7 +52,7 @@
             "_id": 4,
             "name": "Bad Habits",
             "album": "Ed Sheeran",
-            "cover": "https://www.lahiguera.net/musicalia/artistas/ed_sheeran/disco/11372/tema/25301/ed_sheeran_bad_habits-portada.jpg",
+            "cover": "_https_://www.lahiguera.net/musicalia/artistas/ed_sheeran/disco/11372/tema/25301/ed_sheeran_bad_habits-portada.jpg",
             "artist": {
                 "name": "Ed Sheeran",
                 "nickname": "Ed Sheeran",
