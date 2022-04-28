@@ -16,3 +16,6 @@
 
 # Creating shared
 ``` ng g m shred/shared --flat ```
+
+# Creating pipe
+``` ng g p  shared/pipe/orderList ```
