@@ -11,11 +11,13 @@
 ``` ng g module modules/Auth --routing ```
 
 # Creating component
-``` ng g component Example ```
+``` ng g c modules/auth/pages/LoginPage ```
 ``` ng g c shared/components/Sidebar ```
-
 # Creating shared
 ``` ng g m shred/shared --flat ```
 
 # Creating pipe
 ``` ng g p  shared/pipe/orderList ```
+
+# Creating service
+``` ng g s modules/auth/services/auth ```
