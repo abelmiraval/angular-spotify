@@ -13,7 +13,7 @@ export class ImgBrokenDirective {
   }
 
   constructor(private elHost: ElementRef) {
-    console.log(this.elHost)
+    // console.log(this.elHost)
   }
 
 }
