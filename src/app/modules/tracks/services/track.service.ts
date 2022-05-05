@@ -40,7 +40,7 @@ export class TrackService {
    * @returns Devolver canciones random
    */
   getAllRandom$(): Observable<any> {
-    return this.http.get(`${this.URL}/tracks001`)
+    return this.http.get(`${this.URL}/tracks`)
       .pipe
       (
         mergeMap(({ data }: any) => this.skipById(data, 2)),
