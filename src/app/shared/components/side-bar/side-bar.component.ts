@@ -64,6 +64,7 @@ export class SideBarComponent implements OnInit {
         router: ['/']
       }
     ]
+
   }
 
   goTo($event: any): void {
