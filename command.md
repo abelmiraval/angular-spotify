@@ -21,3 +21,9 @@
 
 # Creating service
 ``` ng g s modules/auth/services/auth ```
+
+# Creating guards
+``` ng g guard core/guards/Session ```
+
+# Creating interceptor
+``` ng g interceptor core/interceptors/InjectionSession ```
