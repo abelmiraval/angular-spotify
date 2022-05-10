@@ -23,13 +23,17 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
   constructor(private multimediaService: MultimediaService) { }
 
   ngOnInit(): void {
-    const observer1$: Subscription = this.multimediaService.callback.subscribe(
-      (response: TrackModel) => {
-        console.log('Recibiendo cancion...', response);
-      }
-    )
-
-    this.listObservers$ = [observer1$]
+    const observable1$ = this.multimediaService.myObservable1$
+      .subscribe(
+        (responseOk) => {
+          //TODO: next()
+          console.log('👏 El agua llega perfecto', responseOk)
+        },
+        (responseFail) => {
+          //TODO: error()
+          console.log('🤬 Se tapo la tuberia', responseFail)
+        }
+      )
   }
 
   ngOnDestroy(): void {
