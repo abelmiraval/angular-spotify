@@ -1,5 +1,5 @@
 import { TrackModel } from './../../../core/models/tracks.model';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MultimediaService } from '@shared/services/multimedia.service';
 import { Subscription } from 'rxjs';
 
@@ -9,31 +9,16 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./media-player.component.css']
 })
 export class MediaPlayerComponent implements OnInit, OnDestroy {
-
-  mockCover: TrackModel = {
-    cover: 'https://i.scdn.co/image/ab67616d0000b27345ca41b0d2352242c7c9d4bc',
-    album: 'Gioli & Assia',
-    name: 'BEBE (Oficial)',
-    url: 'http://localhost/track.mp3',
-    _id: 1
-  }
-
+  @ViewChild('progressBar') progressBar: ElementRef = new ElementRef('')
   listObservers$: Array<Subscription> = []
-
-  constructor(private multimediaService: MultimediaService) { }
+  state: string = 'paused'
+  constructor(public multimediaService: MultimediaService) { }
 
   ngOnInit(): void {
-    const observable1$ = this.multimediaService.myObservable1$
-      .subscribe(
-        (responseOk) => {
-          //TODO: next()
-          console.log('👏 El agua llega perfecto', responseOk)
-        },
-        (responseFail) => {
-          //TODO: error()
-          console.log('🤬 Se tapo la tuberia', responseFail)
-        }
-      )
+    const observer1$ = this.multimediaService.playerStatus$
+      .subscribe(status => this.state = status)
+
+    this.listObservers$ = [observer1$]
   }
 
   ngOnDestroy(): void {
@@ -41,4 +26,13 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
     console.log('🔴🔴 BOOM! ');
   }
 
+  handlePosition(event: MouseEvent): void {
+    const elNative: HTMLElement = this.progressBar.nativeElement
+    const { clientX } = event
+    const { x, width } = elNative.getBoundingClientRect()
+    const clickX = clientX - x //
+    const percentageFromX = (clickX * 100) / width
+    console.log(`Click(x): ${percentageFromX}`)
+    this.multimediaService.seekAudio(percentageFromX)
+  }
 }

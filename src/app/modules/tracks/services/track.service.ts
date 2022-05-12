@@ -47,7 +47,7 @@ export class TrackService {
         //   map((dataRevertida) => {
         //     return dataRevertida.filter((track: TrackModel) => track._id !== 1)
         //   })
-        tap(data => console.log('😛😌😛', data)),
+        //tap(data => console.log('😛😌😛', data)),
         catchError((err) => {
           const { status, statusText } = err
           console.log('Algo paso revisame', [status, statusText])
