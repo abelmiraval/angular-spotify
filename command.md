@@ -1,3 +1,10 @@
+3 Pilares de Angular
+
+- Framework basado en componentes
+- Contiene una variedad de librerias optimizadas para trabajar con angular Rxjs, Router
+- Suite del desarrollador (testing)
+
+
 # Creating new project
 ``` ng new spotify --routing --style=css ```
 
