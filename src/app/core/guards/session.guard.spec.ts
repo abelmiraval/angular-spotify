@@ -1,15 +1,22 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SessionGuard } from './session.guard';
 
-describe('SessionGuard', () => {
+//TODO: Es el nombre de la prueba  "Examen del Session Guard"
+describe('Testing of Session Guard', () => {
   let guard: SessionGuard;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ]
+    });
     guard = TestBed.inject(SessionGuard);
   });
 
+  //TODO La primera pregunta de ese gran examen! 
   it('should be created', () => {
     expect(guard).toBeTruthy();
   });
