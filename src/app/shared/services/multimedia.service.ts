@@ -1,12 +1,12 @@
+import { TrackModel } from './../../core/models/tracks.model';
 import { EventEmitter, Injectable } from '@angular/core';
-import { TrackModel } from '@core/models/tracks.model';
-import { BehaviorSubject, isObservable, Observable, Observer, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Observer, Subject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MultimediaService {
-
   callback: EventEmitter<any> = new EventEmitter<any>()
 
   public trackInfo$: BehaviorSubject<any> = new BehaviorSubject(undefined)
@@ -17,84 +17,88 @@ export class MultimediaService {
   public playerPercentage$: BehaviorSubject<number> = new BehaviorSubject(0)
 
   constructor() {
+
     this.audio = new Audio()
-    this.trackInfo$.subscribe(responseOk => {
-      if (responseOk) {
-        this.setAudio(responseOk)
+
+    this.trackInfo$.subscribe(responseOK => {
+      if (responseOK) {
+        this.setAudio(responseOK)
       }
     })
 
     this.listenAllEvents()
+
   }
 
   private listenAllEvents(): void {
+
     this.audio.addEventListener('timeupdate', this.calculateTime, false)
     this.audio.addEventListener('playing', this.setPlayerStatus, false)
     this.audio.addEventListener('play', this.setPlayerStatus, false)
     this.audio.addEventListener('pause', this.setPlayerStatus, false)
     this.audio.addEventListener('ended', this.setPlayerStatus, false)
+
   }
 
   private setPlayerStatus = (state: any) => {
-    console.log('😨😨😨', state)
-    switch (state.type) {
+    switch (state.type) { //TODO: --> playing
       case 'play':
         this.playerStatus$.next('play')
-        break;
+        break
       case 'playing':
         this.playerStatus$.next('playing')
-        break;
+        break
       case 'ended':
         this.playerStatus$.next('ended')
-        break;
+        break
       default:
         this.playerStatus$.next('paused')
         break;
     }
-  }
 
-  private setPercentage(currentTime: number, duration: number): void {
-    //TODO duration --> 100%
-    //TODO currentTime --> (x)
-    //TPDP (currentTime * 100) / duration
-    let porcentage = (currentTime * 100) / duration
-    this.playerPercentage$.next(porcentage)
   }
 
   private calculateTime = () => {
-    console.log('Disparando evento')
     const { duration, currentTime } = this.audio
-    // console.table([duration, currentTime])
     this.setTimeElapsed(currentTime)
-    this.setTimeRemaining(currentTime, duration)
+    this.setRemaining(currentTime, duration)
     this.setPercentage(currentTime, duration)
   }
 
-  private setTimeElapsed(currentTime: number): void {
-    let seconds = Math.floor(currentTime % 60)
-    let minutes = Math.floor((currentTime / 60) % 60)
-    //TODO 00:00 --> 01:05 --> 10:15
-    const displaySeconds = (seconds < 10) ? `0${seconds}` : seconds;
-    const displayMinutes = (minutes < 10) ? `0${minutes}` : minutes;
-    const displayFormat = `${displayMinutes} : ${displaySeconds}`
-    this.timeElapsed$.next(displayFormat)
-
+  private setPercentage(currentTime: number, duration: number): void {
+    //TODO duration ---> 100%
+    //TODO currentTime ---> (x)
+    //TODO (currentTime * 100) / duration
+    let percentage = (currentTime * 100) / duration;
+    this.playerPercentage$.next(percentage)
   }
 
-  private setTimeRemaining(currentTime: number, duration: number): void {
-    let timeLeft = duration - currentTime
-    let seconds = Math.floor(timeLeft % 60)
-    let minutes = Math.floor((timeLeft / 60) % 60)
 
+  private setTimeElapsed(currentTime: number): void {
+    let seconds = Math.floor(currentTime % 60) //TODO 1,2,3
+    let minutes = Math.floor((currentTime / 60) % 60)
+    //TODO  00:00 ---> 01:05 --> 10:15
     const displaySeconds = (seconds < 10) ? `0${seconds}` : seconds;
     const displayMinutes = (minutes < 10) ? `0${minutes}` : minutes;
-    const displayFormat = `-${displayMinutes} : ${displaySeconds}`
+    const displayFormat = `${displayMinutes}:${displaySeconds}`
+    this.timeElapsed$.next(displayFormat)
+  }
+
+  private setRemaining(currentTime: number, duration: number): void {
+    let timeLeft = duration - currentTime;
+    let seconds = Math.floor(timeLeft % 60)
+    let minutes = Math.floor((timeLeft / 60) % 60)
+    const displaySeconds = (seconds < 10) ? `0${seconds}` : seconds;
+    const displayMinutes = (minutes < 10) ? `0${minutes}` : minutes;
+    const displayFormat = `-${displayMinutes}:${displaySeconds}`
     this.timeRemaining$.next(displayFormat)
   }
 
+
   //TODO: Funciones publicas
+
   public setAudio(track: TrackModel): void {
-    console.log('🛰🛰🛰🛰🛰', track)
+    console.log('🐱‍🏍🐱‍🏍🐱‍🏍🐱‍🏍🐱‍🏍', track);
     this.audio.src = track.url
     this.audio.play()
   }
@@ -111,7 +115,7 @@ export class MultimediaService {
     const percentageToSecond = (percentage * duration) / 100
     // console.log(percentageToSecond)
     this.audio.currentTime = percentageToSecond
-  }
 
+  }
 
 }

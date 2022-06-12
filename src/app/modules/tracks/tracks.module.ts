@@ -1,8 +1,9 @@
-import { SharedModule } from '@shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { TracksRoutingModule } from './tracks-routing.module';
-import { TracksPageComponent } from './page/tracks-page/tracks-page.component';
+import { TracksPageComponent } from './pages/tracks-page/tracks-page.component';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({

@@ -11,7 +11,10 @@ describe('LoginPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
       declarations: [LoginPageComponent]
     })
       .compileComponents();
@@ -23,17 +26,17 @@ describe('LoginPageComponent', () => {
     fixture.detectChanges();
   });
 
-  //TODO: Tu primer enunciado el cual debe asegurar lo siguiente
+  //TODO: Tu primer enunciado el cual debe de asegurar lo siguiente
   //TODO: Debe de asegurarse que el formulario sea invalido cuando ingrese dato erroneos
 
   //TODO: Patron AAA
 
-  it('Deberia de retornar "invalido" el formulario', () => {
+  it('🔴 Deberia de retornar "invalido" el formulario', () => {
 
     //TODO: Arrange
     const mockCredentials = {
       email: '0x0x0x0x0x0',
-      password: '11111111111111111111111111111'
+      password: '1111111111111111111111111'
     }
 
     const emailForm: any = component.formLogin.get('email')
@@ -46,10 +49,10 @@ describe('LoginPageComponent', () => {
 
     //TODO: Assert
 
-    expect(component.formLogin.invalid).toEqual(true)
+    expect(component.formLogin.invalid).toEqual(true);
   });
 
-  it('Deberia de retornar "valido" el formulario', () => {
+  it('✔✔ Deberia de retornar "valido" el formulario', () => {
 
     //TODO: Arrange
     const mockCredentials = {
@@ -67,14 +70,16 @@ describe('LoginPageComponent', () => {
 
     //TODO: Assert
 
-    expect(component.formLogin.invalid).toEqual(false)
+    expect(component.formLogin.invalid).toEqual(false);
   });
 
-  it('El boton deberia de tener la palabra "Iniciar sesión"', () => {
+  it('👍 El boton deberia de tener la palabra "Iniciar sesión"', () => {
 
     const elementRef = fixture.debugElement.query(By.css('.form-action button'))
     const getInnerText = elementRef.nativeElement.innerText
 
     expect(getInnerText).toEqual('Iniciar sesión')
-  });
+
+  })
+
 });

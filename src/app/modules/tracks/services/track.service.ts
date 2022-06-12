@@ -1,19 +1,23 @@
+import { TrackModel } from '@core/models/tracks.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TrackModel } from '@core/models/tracks.model';
 import { Observable, of } from 'rxjs';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators'
+import { map, mergeMap, tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-
 @Injectable({
   providedIn: 'root'
 })
 export class TrackService {
-
-  private readonly URL = environment.api;
+  private readonly URL = environment.api
 
   constructor(private http: HttpClient) {
+
   }
+
+  /**
+   * 
+   * @returns Devolver todas las canciones! molonas! 🤘🤘
+   */
 
   private skipById(listTracks: TrackModel[], id: number): Promise<TrackModel[]> {
     return new Promise((resolve, reject) => {
@@ -23,8 +27,9 @@ export class TrackService {
   }
 
   /**
+   * //TODO {data:[..1,...2,..2]}
    * 
-   * @returns Devolver todas la canciones! monolonas! 🤘🤘
+   * @returns 
    */
   getAllTracks$(): Observable<any> {
     return this.http.get(`${this.URL}/tracks`)
@@ -35,26 +40,22 @@ export class TrackService {
       )
   }
 
+
   /**
    * 
    * @returns Devolver canciones random
    */
   getAllRandom$(): Observable<any> {
     return this.http.get(`${this.URL}/tracks`)
-      .pipe
-      (
+      .pipe(
         mergeMap(({ data }: any) => this.skipById(data, 2)),
-        //   map((dataRevertida) => {
-        //     return dataRevertida.filter((track: TrackModel) => track._id !== 1)
-        //   })
-        //tap(data => console.log('😛😌😛', data)),
+        // map((dataRevertida) => { //TODO aplicar un filter comun de array
+        //   return dataRevertida.filter((track: TrackModel) => track._id !== 1)
+        // })
         catchError((err) => {
-          const { status, statusText } = err
-          console.log('Algo paso revisame', [status, statusText])
+          const { status, statusText } = err;
           return of([])
         })
       )
-
   }
-
 }

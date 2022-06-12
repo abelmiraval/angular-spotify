@@ -1,11 +1,12 @@
+import { HomePageComponent } from './modules/home/pages/home-page/home-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SessionGuard } from '@core/guards/session.guard';
-import { HomePageComponent } from '@modules/home/pages/home-page/home-page.component';
 
-const routes: Routes = [// TODO router-outlet(Padre)
+
+const routes: Routes = [ //TODO: router-outlet (Padre)
   {
-    path: 'auth',// TODO (Public) Login, Register, Forgot
+    path: 'auth', //TODO (Public) Login, Register, Forgot...
     loadChildren: () => import(`./modules/auth/auth.module`).then(m => m.AuthModule)
   },
   {

@@ -1,17 +1,16 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { InjectionSessionInterceptor } from '@core/interceptors/injection-session.interceptor';
-import { CookieService } from 'ngx-cookie-service';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CookieService } from 'ngx-cookie-service';
+import { InjectSessionInterceptor } from '@core/interceptors/inject-session.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent
+  declarations: [ //TODO: Declaraciones, componentes, directivas, pipes
+    AppComponent,
   ],
-  imports: [
+  imports: [ //TODO: Solo se importan otros modules
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
@@ -20,7 +19,7 @@ import { AppComponent } from './app.component';
     CookieService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: InjectionSessionInterceptor,
+      useClass: InjectSessionInterceptor,
       multi: true
     }
   ],

@@ -11,7 +11,7 @@ export class ImgBrokenDirective {
     if (this.customImg) {
       elNative.src = this.customImg
     } else {
-      // elNative.src = '/assets/images/image-broken.png'
+      // elNative.src = '/assets/images/img-broken.png'
       elNative.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAAXNSR0IArs4c6QAAAD5JREFUGFdtjKENAEAIA4vC49h/HWbAERwexYfXVDW9S8nMRkTAzOhuVBXI3WeLqiIzsQJFxAD4w4LNbV6fD32XLKyP2o8zAAAAAElFTkSuQmCC'
     }
   }
